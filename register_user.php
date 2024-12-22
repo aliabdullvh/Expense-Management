@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+include("functions.php");
 
 if (isset($_REQUEST['register'])) {
 
@@ -14,20 +15,16 @@ if (isset($_REQUEST['register'])) {
 VALUES ('$user_name', '$user_pass')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
+        my_alert("success", "New Record created Successfully!");
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        my_alert("danger", "Error while inserting record!");
     }
 
     mysqli_close($conn);
 }
 ?>
 
-<div style="position: absolute; right: 20px; top: 20px " class="alert alert-success alert-dismissible fade show"
-    role="alert">
-    New Record created Successfully!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+
 <div class="container">
     <div class="card myCard">
         <div class="card-header"
