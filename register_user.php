@@ -2,14 +2,32 @@
 include("header.php");
 
 if (isset($_REQUEST['register'])) {
+
+    include("db_conn.php");
+
+    //getting input values from html form
     $user_name = $_REQUEST['user_name'];
     $user_pass = $_REQUEST['user_pass'];
 
-    echo $user_name;
-    echo "<br>";
-    echo $user_pass;
+    //inserting data into database
+    $sql = "INSERT INTO reg_users (user_name, user_pass)
+VALUES ('$user_name', '$user_pass')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
 }
 ?>
+
+<div style="position: absolute; right: 20px; top: 20px " class="alert alert-success alert-dismissible fade show"
+    role="alert">
+    New Record created Successfully!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <div class="container">
     <div class="card myCard">
         <div class="card-header"
