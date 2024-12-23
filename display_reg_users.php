@@ -4,7 +4,7 @@ include("functions.php");
 include("db_conn.php");
 ?>
 <div class="container" style="margin-top: 50px; max-width: 700px;">
-    <div class="card myCard" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
+    <div class="" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
         <div class="card-header"
             style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; text-align: center; font-size: 1.5rem; font-weight: bold; padding: 20px;">
             Registered Users
@@ -48,11 +48,11 @@ include("db_conn.php");
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <a class="me-2 btn"
-                                                style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem;"
+                                                style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
                                                 href="./update_user_pass.php?update_pass_id=<?php echo $row['reg_id']; ?>">Change
                                                 Password</a>
                                             <a class="btn"
-                                                style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem;"
+                                                style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
                                                 href="./delete_user.php?delete_id=<?php echo $row['reg_id']; ?>">Delete</a>
                                         </div>
                                     </td>
