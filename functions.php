@@ -10,4 +10,18 @@ function my_alert($color, $msg)
     </div>
     <?php
 }
+
+
+
+//check user
+function check_user()
+{
+    if (!isset($_SESSION['is_login']) == true) {
+        header("Location: login_user.php");
+    }
+}
+
+
+
+
 ?>

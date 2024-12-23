@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("header.php");
 include("functions.php");
 
@@ -15,8 +17,12 @@ if (isset($_REQUEST['login'])) {
         $row = mysqli_fetch_assoc($result_login_query);
         $db_user_name = $row['user_name'];
         $db_user_pass = $row['user_pass'];
+        $db_user_pic = $row['user_pic'];
 
         if (password_verify($user_pass, $db_user_pass)) {
+            $_SESSION['name'] = $db_user_name;
+            $_SESSION['picture'] = $db_user_pic;
+            $_SESSION['is_login'] = true;
             my_alert("success", "Login Successfull");
             header("Location: index.php");
         } else {
