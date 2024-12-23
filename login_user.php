@@ -2,33 +2,42 @@
 include("header.php");
 include("functions.php");
 
-if (isset($_REQUEST['register'])) {
+if (isset($_REQUEST['login'])) {
     include("db_conn.php");
 
     $user_name = $_REQUEST['user_name'];
     $user_pass = $_REQUEST['user_pass'];
 
-    //encrypted Password
-    $enc_pass = password_hash($user_pass, PASSWORD_BCRYPT);
+    $login_query = "SELECT * FROM reg_users WHERE user_name = '$user_name'";
+    $result_login_query = mysqli_query($conn, $login_query);
 
+    if (mysqli_num_rows($result_login_query) == 1) {
+        $row = mysqli_fetch_assoc($result_login_query);
+        $db_user_name = $row['user_name'];
+        $db_user_pass = $row['user_pass'];
 
-    $sql = "INSERT INTO reg_users (user_name, user_pass) VALUES ('$user_name', '$enc_pass')";
-
-    if (mysqli_query($conn, $sql)) {
-        my_alert("success", "Account Created Successfully!");
+        if (password_verify($user_pass, $db_user_pass)) {
+            my_alert("success", "Login Successfull");
+            header("Location: index.php");
+        } else {
+            my_alert("danger", "Incorrect Password");
+        }
     } else {
-        my_alert("danger", "Error while creating account!");
+        echo "User doesn't exits";
     }
+
 
     mysqli_close($conn);
 }
+
+
 ?>
 
 <div class="container" style="margin-top: 50px;  max-width: 900px;">
     <div class="card myCard" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
         <div class="card-header"
             style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; text-align: center; font-size: 1.5rem; font-weight: bold; padding: 20px;">
-            Register for BudgetBuddy
+            Login into BudgetBuddy
         </div>
         <div class="card-body" style="background-color: #f4f4f9; padding: 30px;">
             <div class="row">
@@ -45,13 +54,12 @@ if (isset($_REQUEST['register'])) {
                                 required style="border: 1px solid #ccc; border-radius: 5px;">
                         </div>
                         <div class="mb-3">
-                            <button type="submit" name="register" class="btn"
-                                style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; width: 100%; padding: 10px; border-radius: 5px; font-size: 1.2rem;">Create
-                                Account</button>
+                            <button type="submit" name="login" class="btn"
+                                style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; width: 100%; padding: 10px; border-radius: 5px; font-size: 1.2rem;">Login</button>
                         </div>
                         <div class="text-center" style="margin-top: 20px;">
-                            <p>Already have an account? <a href="login_user.php"
-                                    style="color: #2575fc; font-weight: bold;">Login here</a></p>
+                            <p>Don't have an Account? <a href="register_user.php"
+                                    style="color: #2575fc; font-weight: bold;">Register here</a></p>
                         </div>
                     </form>
                 </div>

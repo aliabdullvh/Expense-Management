@@ -36,7 +36,7 @@ include("db_conn.php");
                             while ($row = mysqli_fetch_assoc($run_fetch_data)) {
                                 ?>
                                 <tr>
-                                    <th scope="row"><?php echo $counter++; ?></th>
+                                    <th scope="row"><?php echo $counter; ?></th>
                                     <td><?php echo $row['user_name']; ?></td>
                                     <td>
                                         <a href="upload_img.php?user_id=<?php echo $row['reg_id']; ?>">
@@ -58,6 +58,7 @@ include("db_conn.php");
                                     </td>
                                 </tr>
                                 <?php
+                                $counter++;
                             }
                         } else {
                             ?>
@@ -68,6 +69,7 @@ include("db_conn.php");
                             </tr>
                             <?php
                         }
+                        mysqli_close($conn);
                         ?>
                     </tbody>
                 </table>
