@@ -48,7 +48,7 @@ include("db_conn.php");
                             </a>
                         </td>
                         <td>
-                            <a href=""></a>
+                            <a href="./delete_user.php?delete_id=<?php echo $row['reg_id']; ?>">Delete</a>
                         </td>
                     </tr>
                     <?php
