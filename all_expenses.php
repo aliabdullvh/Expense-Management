@@ -3,7 +3,7 @@ include("header.php");
 include("functions.php");
 include("db_conn.php");
 ?>
-<div class="container" style="margin-top: 50px; max-width: 700px;">
+<div class="container" style="margin-top: 50px; max-width: 900px;">
     <div class="" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
         <div class="card-header"
             style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; text-align: center; font-size: 1.5rem; font-weight: bold; padding: 20px;">
@@ -12,7 +12,7 @@ include("db_conn.php");
         <div class="card-body" style="background-color: #f4f4f9; padding: 20px;">
             <div class="row mb-4">
                 <div class="col-12 text-end">
-                    <a href="./add_expenses.php" class="btn"
+                    <a href="./add_expense.php" class="btn"
                         style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; padding: 10px 20px; font-size: 1.1rem;">Add
                         Expense</a>
                 </div>
@@ -45,9 +45,14 @@ include("db_conn.php");
                                     <td><?php echo $row['item_details']; ?></td>
                                     </td>
                                     <td>
-                                        <a class="btn"
-                                            style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
-                                            href="./delete_expense.php?del_expense_id=<?php echo $row['item_id']; ?>">Delete</a>
+                                        <div class="d-flex justify-content-center">
+                                            <a class="me-2 btn"
+                                                style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
+                                                href="./edit_expense.php?edit_expense_id=<?php echo $row['item_id']; ?>">Edit
+                                            </a>
+                                            <a class="btn"
+                                                style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
+                                                href="./delete_expense.php?del_expense_id=<?php echo $row['item_id']; ?>">Delete</a>
                                     </td>
                                 </tr>
                                 <?php

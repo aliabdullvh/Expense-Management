@@ -59,7 +59,7 @@
                         <a class="nav-link text-white" href="#features">Features</a>
                     </li>
                 </ul>
-                <a href="./register_user.php" class="btn btn-outline-light">Get Started</a>
+                <a href="./login_user.php" class="btn btn-outline-light">Get Started</a>
             </div>
         </div>
     </nav>
@@ -69,7 +69,7 @@
         <div class="hero-content">
             <h1 class="display-4">Welcome to BudgetBuddy</h1>
             <p class="lead">Your personal finance companion to help manage your expenses and savings efficiently.</p>
-            <a href="./register_user.php" class="btn btn-lg"
+            <a href="./login_user.php" class="btn btn-lg"
                 style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white;">Join Now</a>
         </div>
     </div>
