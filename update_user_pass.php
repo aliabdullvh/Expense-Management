@@ -36,8 +36,9 @@ mysqli_close($conn);
 ?>
 
 
-<div class="container" style="margin-top: 50px;">
-    <div class="card myCard" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
+<div class="container" style="margin-top: 50px;  max-width: 500px;">
+    <div class="card" id="my-Card"
+        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
         <div class="card-header"
             style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; text-align: center; font-size: 1.5rem; font-weight: bold; padding: 20px;">
             Update Password
