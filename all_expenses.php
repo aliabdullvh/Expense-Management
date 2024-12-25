@@ -13,7 +13,15 @@ check_user();
 ?>
 
 <div class="container py-3">
-    <h2 class="text-center py-3 display-5 fw-bold">Date wise Expenses</h2>
+    <h2 class="text-center py-4 display-4 fw-bold" style="background: linear-gradient(135deg, #8b0000, #2c2c2c); 
+           -webkit-background-clip: text; 
+           -webkit-text-fill-color: transparent; 
+           font-family: 'Poppins', sans-serif; 
+           letter-spacing: 2px; 
+           text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);">
+        Date Wise<span style="color: #8b0000;">Expense</span>
+    </h2>
+
     <div class="row px-3">
         <div class="col-xl-6 col-lg-6">
             <a href="./today_expense.php">

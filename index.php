@@ -4,6 +4,11 @@ include("header.php");
 include("functions.php");
 include("db_conn.php");
 
+if (isset($_SESSION['message']) && isset($_SESSION['color'])) {
+    echo my_alert($_SESSION['color'], $_SESSION['message']);
+    unset($_SESSION['message'], $_SESSION['color']);
+}
+
 check_user();
 
 
@@ -11,7 +16,16 @@ check_user();
 ?>
 
 <div class="container py-3">
-    <h2 class="text-center py-3 display-5 fw-bold">BudgetBuddy</h2>
+    <h2 class="text-center py-4 display-4 fw-bold" style="background: linear-gradient(135deg, #8b0000, #2c2c2c); 
+           -webkit-background-clip: text; 
+           -webkit-text-fill-color: transparent; 
+           font-family: 'Poppins', sans-serif; 
+           letter-spacing: 2px; 
+           text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);">
+        Budget<span style="color: #8b0000;">Buddy</span>
+    </h2>
+
+
     <div class="row px-3">
         <!-- <div class="col-xl-6 col-lg-6">
             <div class="card l-bg-cherry">

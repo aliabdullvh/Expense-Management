@@ -22,7 +22,13 @@ if (isset($_REQUEST['login'])) {
             $_SESSION['name'] = $db_user_name;
             $_SESSION['picture'] = $db_user_pic;
             $_SESSION['is_login'] = true;
-            my_alert("success", "Login Successfull");
+
+            $_SESSION['message'] = "Login Successful";
+            $_SESSION['color'] = "success";
+
+
+
+
             header("Location: index.php");
         } else {
             my_alert("danger", "Incorrect Password");

@@ -15,7 +15,18 @@
     <!-- Font Aousome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
         integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-    <title>Register</title>
+    <title>
+        <?php
+        $filename = basename($_SERVER['PHP_SELF'], ".php");
+        $page_title = ucfirst(str_replace("_", " ", $filename));
+
+        if ($page_title === "Index") {
+            echo "Dashboard";
+        } else {
+            echo $page_title;
+        }
+        ?>
+    </title>
 </head>
 
 <body>
