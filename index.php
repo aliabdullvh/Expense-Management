@@ -92,18 +92,22 @@ check_user();
                         <div class="row align-items-center mb-2 d-flex">
                             <div class="col-8">
                                 <h2 class="d-flex align-items-center mb-0">
-                                    $11.61k
+                                    View Expenses
                                 </h2>
                             </div>
-                            <div class="col-4 text-right">
+                            <!-- <div class="col-4 text-right">
                                 <span>2.5% <i class="fa fa-arrow-up"></i></span>
-                            </div>
+                            </div> -->
                         </div>
+
+
+
                     </div>
                 </div>
-            </a>
         </div>
+        </a>
     </div>
+</div>
 </div>
 
 <style>

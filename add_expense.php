@@ -51,7 +51,8 @@ if (isset($_REQUEST["add_item"])) {
                     </div>
                     <div class="col-md-6 mb-4">
                         <label for="item_date" class="form-label">Date</label>
-                        <input type="date" class="form-control" name="item_date" required>
+                        <input type="date" class="form-control" value="<?php echo date("Y-m-d") ?>" name="item_date"
+                            required>
                     </div>
                     <div class="col-md-12 mb-4">
                         <label for="item_details" class="form-label">Details</label>

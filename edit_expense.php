@@ -35,7 +35,7 @@ if (isset($_REQUEST['update_item'])) {
     $update_item_details = $_REQUEST['update_item_details'];
 
 
-    $update_query = "UPDATE `expense_info` SET  `item_name`='$update_item_name',`item_price`='$update_item_price',`item_date`='$update_item_date',`item_details`='[$update_item_details' WHERE item_id = '$edit_expense_id'";
+    $update_query = "UPDATE `expense_info` SET  `item_name`='$update_item_name',`item_price`='$update_item_price',`item_date`='$update_item_date',`item_details`='$update_item_details' WHERE item_id = '$edit_expense_id'";
     $run_update_query = mysqli_query($conn, $update_query);
 
     if ($run_update_query) {

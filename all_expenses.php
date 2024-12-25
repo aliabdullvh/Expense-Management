@@ -1,77 +1,127 @@
 <?php
+
 include("header.php");
 include("functions.php");
 include("db_conn.php");
-?>
-<div class="container" style="margin-top: 50px; max-width: 900px;">
-    <div class="" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden;">
-        <div class="card-header"
-            style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; text-align: center; font-size: 1.5rem; font-weight: bold; padding: 20px;">
-            Expenses Dashboard
-        </div>
-        <div class="card-body" style="background-color: #f4f4f9; padding: 20px;">
-            <div class="row mb-4">
-                <div class="col-12 text-end">
-                    <a href="./add_expense.php" class="btn"
-                        style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; padding: 10px 20px; font-size: 1.1rem;">Add
-                        Expense</a>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover align-middle text-center" style="font-size: 1rem;">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col" style="width: 10%; white-space: nowrap;">ID</th>
-                            <th scope="col" style="width: 30%; white-space: nowrap;">Name</th>
-                            <th scope="col" style="width: 30%; white-space: nowrap;">Price</th>
-                            <th scope="col" style="width: 30%; white-space: nowrap;">Date Added</th>
-                            <th scope="col" style="width: 30%; white-space: nowrap;">Expense Details</th>
-                            <th scope="col" style="width: 30%; white-space: nowrap;">Operations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $fetch_expense = "SELECT * FROM expense_info ORDER BY item_id ASC";
-                        $run_fetch_expense = mysqli_query($conn, $fetch_expense);
-                        $expense_counter = 1;
-                        if (mysqli_num_rows($run_fetch_expense) > 0) {
-                            while ($row = mysqli_fetch_assoc($run_fetch_expense)) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $expense_counter; ?></td>
-                                    <td><?php echo $row['item_name']; ?></td>
-                                    <td><?php echo $row['item_price']; ?></td>
-                                    <td><?php echo $row['item_date']; ?></td>
-                                    <td><?php echo $row['item_details']; ?></td>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex justify-content-center">
-                                            <a class="me-2 btn"
-                                                style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
-                                                href="./edit_expense.php?edit_expense_id=<?php echo $row['item_id']; ?>">Edit
-                                            </a>
-                                            <a class="btn"
-                                                style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: #fff; border: none; padding: 5px 10px; font-size: 0.8rem; width: 140px;"
-                                                href="./delete_expense.php?del_expense_id=<?php echo $row['item_id']; ?>">Delete</a>
-                                    </td>
-                                </tr>
-                                <?php
-                                $expense_counter++;
-                            }
-                        } else {
-                            ?>
-                            <tr>
-                                <td colspan="6">
-                                    <h3 class="text-danger text-center">No Expense Found!</h3>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
 
-                    </tbody>
-                </table>
-            </div>
+check_user();
+
+// l-bg-orange-dark"
+// l-bg-cherry
+// l - bg - blue - dark
+
+?>
+
+<div class="container py-3">
+    <h2 class="text-center py-3 display-5 fw-bold">Date wise Expenses</h2>
+    <div class="row px-3">
+        <div class="col-xl-6 col-lg-6">
+            <a href="./today_expense.php">
+                <div class="card l-bg-orange-dark">
+                    <div class="card-statistic-3 p-4">
+                        <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0">Today's Expenses</h5>
+                        </div>
+                        <div class="row align-items-center mb-2 d-flex">
+                            <div class="col-8">
+                                <h2 class="d-flex align-items-center mb-0">
+                                    <?php
+                                    $today_date = date("Y-m-d");
+                                    $fetch_today_expense = "SELECT * FROM expense_info WHERE item_date = '$today_date'";
+                                    $run_fetch_today_expense = mysqli_query($conn, $fetch_today_expense);
+                                    echo (mysqli_num_rows($run_fetch_today_expense));
+                                    ?>
+                                </h2>
+                            </div>
+                            <!-- <div class="col-4 text-right">
+                                <span>2.5% <i class="fa fa-arrow-up"></i></span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+            <a href="./yestarday_expense.php">
+                <div class="card l-bg-cherry">
+                    <div class="card-statistic-3 p-4">
+                        <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0">Yestarday's Expenses</h5>
+                        </div>
+                        <div class="row align-items-center mb-2 d-flex">
+                            <div class="col-8">
+                                <h2 class="d-flex align-items-center mb-0">
+                                    <?php
+                                    $yestarday_date = date('Y-m-d', strtotime("-1 days"));
+                                    $fetch_yestarday_expense = "SELECT * FROM expense_info WHERE item_date = '$yestarday_date'";
+                                    $run_fetch_yestarday_expense = mysqli_query($conn, $fetch_yestarday_expense);
+                                    echo (mysqli_num_rows($run_fetch_yestarday_expense));
+                                    ?>
+                                </h2>
+                            </div>
+                            <!-- <div class="col-4 text-right">
+                                <span>2.5% <i class="fa fa-arrow-up"></i></span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+            <a href="./seven_days_expense.php">
+                <div class="card l-bg-blue-dark">
+                    <div class="card-statistic-3 p-4">
+                        <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0">Last Week's Expenses</h5>
+                        </div>
+                        <div class="row align-items-center mb-2 d-flex">
+                            <div class="col-8">
+                                <h2 class="d-flex align-items-center mb-0">
+                                    <?php
+                                    $previous_seven_days_date = date("Y-m-d", strtotime($today_date . "-1 week"));
+                                    $fetch_week_expense = "SELECT * FROM expense_info WHERE item_date BETWEEN '$previous_seven_days_date' AND '$today_date'";
+                                    $run_fetch_week_expense = mysqli_query($conn, $fetch_week_expense);
+                                    echo (mysqli_num_rows($run_fetch_week_expense));
+                                    ?>
+                                </h2>
+                            </div>
+                            <!-- <div class="col-4 text-right">
+                                <span>2.5% <i class="fa fa-arrow-up"></i></span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+            <a href="./month_expense.php">
+                <div class="card l-bg-green-dark">
+                    <div class="card-statistic-3 p-4">
+                        <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="mb-4">
+                            <h5 class="card-title mb-0">Last Month's Expenses</h5>
+                        </div>
+                        <div class="row align-items-center mb-2 d-flex">
+                            <div class="col-8">
+                                <h2 class="d-flex align-items-center mb-0">
+                                    <?php
+                                    $month_date = date("Y-m-d", strtotime($today_date . "-1 month"));
+                                    $fetch_month_expense = "SELECT * FROM expense_info WHERE item_date BETWEEN '$month_date' AND '$today_date'";
+                                    $run_fetch_month_expense = mysqli_query($conn, $fetch_month_expense);
+                                    echo (mysqli_num_rows($run_fetch_month_expense));
+                                    ?>
+                                </h2>
+                            </div>
+                            <!-- <div class="col-4 text-right">
+                                <span>2.5% <i class="fa fa-arrow-up"></i></span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
@@ -81,10 +131,6 @@ include("db_conn.php");
         background: url('https://images.pexels.com/photos/259100/pexels-photo-259100.jpeg') no-repeat center center fixed;
         background-size: cover;
         font-family: 'Arial', sans-serif;
-    }
-
-    .table-responsive::-webkit-scrollbar {
-        display: none;
     }
 </style>
 

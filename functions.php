@@ -21,7 +21,14 @@ function check_user()
     }
 }
 
+//customize date
 
+function customize_date($date)
+{
+    $php_date = strtotime($date);
+    $formatted_date = date("d-m-Y", $php_date);
+    echo $formatted_date;
+}
 
 
 ?>
